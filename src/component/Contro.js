@@ -7,23 +7,30 @@ const Contro = (props) => {
         <div>
            <div className="row">
                <div className="col-md-5 m-auto">
+                <h2>{ props.control }</h2>
                 <button onClick = { () => props.add()}>+ ADD</button>
-                <button onClick = { () => props.sub()}>- SUB</button>
+                 <button onClick = { () => props.sub()}>- SUB</button>
                </div>
            </div>
         </div>
     )
 }
 
-function mapDispactToProps(dispatch){
+function mapStateToProps(state){
+    return {
+        control: state.con.count
+    }
+}
+function mapDispatchToProps(dispatch){
     return{
-        add: () =>{
-            dispatch({ type:'ADD'});
+        add: () => {
+            dispatch({ type : 'INCRIMENT'})
         },
-        sub: () => {
-            dispatch ({ type:'SUB'});
+
+        sub : () => {
+            dispatch({ type : 'Dic'})
         }
     }
 }
 
-export default connect(null,mapDispactToProps)(Contro)
+export default connect(mapStateToProps,mapDispatchToProps)(Contro)
