@@ -24,7 +24,7 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
     return{
         add: () => {
-            dispatch({ type : 'INCRIMENT'})
+            dispatch({ type : 'INCRIMENT' , payload:  2 })
         },
 
         sub : () => {

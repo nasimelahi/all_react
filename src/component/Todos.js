@@ -1,6 +1,7 @@
 import React,{ Component } from 'react';
 import {connect} from 'react-redux';
-import Showtodo from './Showtodo'
+import Showtodo from './Showtodo';
+//import { addtodo } from '../store/action/todoAction'
 
 
 
@@ -29,18 +30,21 @@ class Todos extends Component{
     submithandel =(e) => {
         e.preventDefault();
         let todo = {id:Date.now(),Todo:this.state.Todo}
-        let todos = [...this.state.todos , todo]
-        //let todos = newtodos.push(newTodo);
-        this.setState({
-            todos 
-         })
+        //let todos = [...this.state.todos , todo]
+        
+        this.props.dispatch({type: 'ADD_TODO' , payload : {
+            id:Date.now(),
+            todo:this.state.Todo
+        }})
+        
         this.myRef.current.reset();
     }
     render(){
+        
         return(
             <div className = "container">
                 <div className="row">
-                    <div className="text-center m-auto col-md-5">
+                    <div className="text-center m-auto col-md-7">
                         <form onSubmit = {this.submithandel} ref={ this.myRef}>
                             <div className="form-group">
                                 <label htmlFor="Todo">Todo</label>
@@ -51,9 +55,9 @@ class Todos extends Component{
                                 value = { this.state.content}
                                 />
                             </div>
-                            <button className="btn btn-warning">Submit</button>
+                            <button className="btn btn-warning" >Submit</button>
                         </form>
-                        <Showtodo todos ={ this.state.todos }/>
+                        <Showtodo/>
                     </div>
                 </div>
             </div>
@@ -65,4 +69,4 @@ class Todos extends Component{
  
 
 
-export default Todos
+export default connect(null,)(Todos)

@@ -4,17 +4,13 @@ import Contro from '../component/Contro'
 
 const Home = (props) => {
     return(
-        <div>
-            <h1 className="text-center">{ props.count }</h1>
+        <div className="text-center">
+            <h1 className="text-center"></h1>
             <Contro/>
         </div>
     )
 }
 
-function mapStateToProps(state){
-    return{
-        count : state.count
-    }
-};
 
-export default connect(mapStateToProps)(Home)
+
+export default Home
